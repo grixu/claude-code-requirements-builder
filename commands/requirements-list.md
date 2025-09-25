@@ -1,3 +1,9 @@
+---
+description: "Display all requirements documentation - view only"
+allowed-tools:
+  - Read
+---
+
 # List All Requirements
 
 Display all requirements with their status and summaries.

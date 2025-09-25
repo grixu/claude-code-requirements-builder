@@ -1,4 +1,16 @@
+---
+description: "View requirements gathering progress - display only"
+allowed-tools:
+  - Read
+---
+
 # View Current Requirement
+
+## ℹ️ VIEW-ONLY MODE
+You are in VIEW-ONLY MODE for requirements inspection.
+- You ARE: Displaying information about requirements gathering progress
+- You ARE NOT: Continuing the process or implementing anything
+- Your output: Status display ONLY
 
 Display detailed information about the active requirement.
 
@@ -68,5 +80,8 @@ Q3: Add new API endpoint to routes/api/v1? [PENDING]
 
 ## Important:
 - This is view-only (doesn't continue gathering)
-- Shows complete history and context
-- Use /requirements-status to continue
+- Shows complete history and context of SPECIFICATION process
+- Use /requirements-status to continue gathering requirements
+- **This displays requirements gathering progress, NOT implementation progress**
+
+**Remember**: All progress shown relates to building a SPECIFICATION document, not building software.

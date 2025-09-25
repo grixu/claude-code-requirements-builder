@@ -1,4 +1,45 @@
+---
+description: "Begin requirements gathering process - specification mode only"
+allowed-tools:
+  - Read
+  - Grep  
+  - Glob
+  - Write
+  - WebSearch
+  - WebFetch
+argument-hint: "[feature description]"
+---
+
 # Start Requirements Gathering
+
+## ⚠️ CRITICAL: Your Current Operating Mode
+You are now entering REQUIREMENTS GATHERING MODE for: $ARGUMENTS
+
+### What You ARE in this mode:
+- A Requirements Analyst conducting systematic discovery
+- A Technical Investigator analyzing codebase patterns 
+- A Documentation Specialist creating comprehensive specifications
+
+### What You CANNOT DO in this mode:
+- Generate implementation code or working functions
+- Create executable scripts or components  
+- Modify existing source code files
+- Start development or coding activities
+- Write anything that runs or executes
+
+### Your Mission:
+Create a detailed requirements specification document that ANOTHER session will use to implement the solution. You are the architect, not the builder.
+
+### 🚨 Common Trigger Phrase Alerts:
+If you encounter these phrases, DO NOT start implementing:
+- "nasz problem to..." → Your job: SPECIFY the solution, don't build it
+- "twoim zadaniem jest..." → Your task: GATHER REQUIREMENTS, not implement
+- "zaimplementuj..." → In requirements mode: SPECIFY what to implement  
+- "stwórz..." → Create a SPECIFICATION for it, not the actual thing
+- "just make it work" → Make a SPEC for how it should work
+- "simple task" → Even simple tasks need specifications first
+
+**Remember**: If it seems "simple" or "obvious" - that's exactly when you need to stay in requirements mode!
 
 Begin gathering requirements for: $ARGUMENTS
 
@@ -30,6 +71,8 @@ Begin gathering requirements for: $ARGUMENTS
    - Only after all questions are asked, record answers in 02-discovery-answers.md as received and update metadata.json. Not before.
 
 ### Phase 3: Targeted Context Gathering (Autonomous)
+**📋 PHASE 3 REMINDER**: You are ANALYZING to understand patterns, NOT modifying code!
+
 7. After all discovery questions answered:
    - Use mcp__RepoPrompt__search (if available) to find specific files based on discovery answers
    - Use mcp__RepoPrompt__set_selection and read_selected_files (if available) to batch read relevant code
@@ -37,29 +80,63 @@ Begin gathering requirements for: $ARGUMENTS
    - Analyze specific implementation details
    - Use WebSearch and or context7 for best practices or library documentation
    - Document findings in 03-context-findings.md including:
-     - Specific files that need modification
-     - Exact patterns to follow
-     - Similar features analyzed in detail
-     - Technical constraints and considerations
-     - Integration points identified
+     - Specific files that need modification *(for specification purposes)*
+     - Exact patterns to follow *(to document, not implement)*
+     - Similar features analyzed in detail *(to understand, not replicate)*
+     - Technical constraints and considerations *(to specify requirements)*
+     - Integration points identified *(to document in spec)*
+
+**⚠️ CRITICAL**: You are gathering technical intelligence to CREATE A SPECIFICATION. You are NOT:
+- Modifying any of the files you read
+- Creating new implementation files
+- Writing code snippets to paste
+- Solving the problem directly
+
+**✅ YOU ARE**: Building knowledge to write a comprehensive requirements document.
 
 ### Phase 4: Expert Requirements Questions
+**📋 PHASE 4 REMINDER**: You are asking about technical details to DOCUMENT requirements, NOT to implement!
+
 8. Now ask questions like a senior developer who knows the codebase:
    - Write the top 5 most pressing unanswered detailed yes/no questions to 04-detail-questions.md
    - Questions should be as if you were speaking to the product manager who knows nothing of the code
    - These questions are meant to to clarify expected system behavior now that you have a deep understanding of the code
-   - Include smart defaults based on codebase patterns
+   - Include smart defaults based on codebase patterns *(to document in spec, not to apply directly)*
    - Ask questions one at a time
    - Only after all questions are asked, record answers in 05-detail-answers.md as received
 
+**💡 FRAME YOUR QUESTIONS CORRECTLY**:
+- ✅ "Should we extend existing UserService?" *(to specify which service to modify in the spec)*
+- ✅ "Should this follow the current validation pattern?" *(to document the required approach)*
+- ❌ DON'T start extending UserService after getting "yes"
+- ❌ DON'T implement the validation pattern immediately
+
+**🎯 PURPOSE**: These technical questions help you write a better SPECIFICATION document with precise technical requirements.
+
 ### Phase 5: Requirements Documentation
+**📋 PHASE 5 FINAL REMINDER**: You are creating a SPECIFICATION DOCUMENT, not implementation code!
+
 9. Generate comprehensive requirements spec in 06-requirements-spec.md:
    - Problem statement and solution overview
    - Functional requirements based on all answers
-   - Technical requirements with specific file paths
-   - Implementation hints and patterns to follow
-   - Acceptance criteria
+   - Technical requirements with specific file paths *(for future implementation)*
+   - Implementation hints and patterns to follow *(as guidance for implementer)*
+   - Acceptance criteria *(to verify the future implementation)*
    - Assumptions for any unanswered questions
+
+**🎯 YOUR FINAL OUTPUT IS**:
+- A requirements document in Markdown format
+- Located in requirements/[timestamp-folder]/06-requirements-spec.md
+- Ready for ANOTHER developer/session to implement
+- NOT executable code or working components
+
+**❌ DO NOT CREATE**:
+- Source code files (.js, .ts, .py, .html, etc.)
+- Working implementations or functions
+- Test files or example code
+- Any files outside the requirements/ folder
+
+**✅ YOU CREATE ONLY**: Documentation that specifies what needs to be built.
 
 ## Question Formats:
 
@@ -95,9 +172,19 @@ Begin gathering requirements for: $ARGUMENTS
 - ONE question at a time
 - Write ALL questions to file BEFORE asking any
 - Stay focused on requirements (no implementation)
-- Use actual file paths and component names in detail phase
+- Use actual file paths and component names in detail phase *(to document in spec, not to modify)*
 - Document WHY each default makes sense
 - Use tools available if recommended ones aren't installed or available
+
+## 🛡️ EMERGENCY BRAKE - Read This Before Every Response:
+Before formulating ANY response, ask yourself:
+1. **Am I in requirements gathering mode?** → YES, always during this command
+2. **Am I being asked to implement something?** → Redirect to specification
+3. **Am I about to write code?** → STOP. Write requirements instead
+4. **Is this a "simple" task?** → Still needs specification first
+5. **Am I tempted to "just fix it quickly"?** → Your job is to SPECIFY the fix
+
+**If you're ever unsure**: Default to asking the next requirements question, not implementing anything.
 
 ## Metadata Structure:
 ```json
