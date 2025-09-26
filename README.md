@@ -13,37 +13,42 @@ This system transforms the requirements gathering process by:
 
 ## 🚀 Quick Start
 
+### Requirements Gathering:
 ```bash
 # Start gathering requirements for a new feature
 /requirements-start add user profile picture upload
 
-# Check progress and continue
-/requirements-status
-
-# View current requirement details
-/requirements-current
-
-# List all requirements
-/requirements-list
+# Continue active requirement OR view/list specifications
+/requirements-current                    # Continue active requirement
+/requirements-current dark-mode          # View specific specification
+/requirements-current --all              # List all specifications
 
 # End current requirement gathering
 /requirements-end
 
-# Quick reminder if AI strays off course
-/remind
+# Universal focus correction and task reminder
+/requirements-focus
+```
+
+### Implementation:
+```bash
+# Begin implementing the active specification
+/requirements-implement
+
+# Or implement a specific completed specification
+/requirements-implement user-authentication
 ```
 
 ## 📁 Repository Structure
 
 ```
 claude-requirements/
-├── commands/                     # Claude command definitions
-│   ├── requirements-start.md    # Begin new requirement
-│   ├── requirements-status.md   # Check progress (alias: current)
-│   ├── requirements-current.md  # View active requirement
-│   ├── requirements-end.md      # Finalize requirement
-│   ├── requirements-list.md     # List all requirements
-│   └── requirements-remind.md   # Remind AI of rules
+├── commands/                        # Claude command definitions
+│   ├── requirements-start.md       # Begin new requirement gathering
+│   ├── requirements-current.md     # Central hub: continue/view/list specs  
+│   ├── requirements-focus.md       # Universal focus correction
+│   ├── requirements-implement.md   # Begin implementation from spec
+│   └── requirements-end.md         # Finalize requirement gathering
 │
 ├── requirements/                 # Requirement documentation storage
 │   ├── .current-requirement     # Tracks active requirement
@@ -61,7 +66,9 @@ claude-requirements/
 └── examples/                     # Example requirements
 ```
 
-## 🔄 How It Works
+## 🔄 Complete Workflow: From Idea to Implementation
+
+### Phase A: Requirements Gathering
 
 ### Phase 1: Initial Setup & Codebase Analysis
 ```
@@ -117,6 +124,33 @@ Generates comprehensive spec with:
 - Implementation patterns to follow
 - Acceptance criteria
 
+## Phase B: Implementation
+
+### Phase 6: Implementation Preparation
+```
+User: /requirements-implement
+```
+AI analyzes the specification and:
+- Loads project context (CLAUDE.md if available)
+- Verifies specification completeness
+- Plans implementation phases and subagent coordination
+- Creates implementation strategy
+
+### Phase 7: Smart Implementation
+Based on scope, AI either:
+- **Single Agent**: Handles simple specs in current session
+- **Coordinated Agents**: Delegates complex work to specialized subagents
+  - Frontend components → UI specialist
+  - Backend APIs → Service specialist  
+  - Database changes → Data specialist
+  - Testing → QA specialist
+
+### Phase 8: Quality Assurance
+- Tests against acceptance criteria from specification
+- Validates implementation follows project patterns
+- Ensures all requirements are satisfied
+- Reports final status and integration points
+
 ## 📋 Command Reference
 
 ### `/requirements-start [description]`
@@ -127,16 +161,33 @@ Begins gathering requirements for a new feature or change.
 /requirements-start implement dark mode toggle
 ```
 
-### `/requirements-status` or `/requirements-current`
-Shows current requirement progress and continues gathering.
+### `/requirements-current [spec-id] [--all]`
+Central hub for requirements management.
 
-**Output:**
+**No arguments - Continue Active:**
 ```
 📋 Active Requirement: dark-mode-toggle
 Phase: Discovery Questions
 Progress: 3/5 questions answered
 
 Next: Q4: Should this sync across devices?
+```
+
+**With spec-id - View Specific:**
+```
+/requirements-current dark-mode
+📋 Requirement: Dark Mode Toggle
+Status: Complete | Ready for implementation
+[Shows complete specification details]
+```
+
+**With --all flag - List All:**
+```
+/requirements-current --all
+📚 All Requirements:
+🔴 ACTIVE: profile-upload (Discovery 3/5)
+✅ COMPLETE: dark-mode, user-auth
+⚠️ INCOMPLETE: notifications (paused 3 days ago)
 ```
 
 ### `/requirements-end`
@@ -157,15 +208,45 @@ Shows all requirements with their status.
 ⚠️ INCOMPLETE: data-export (Paused 3 days ago)
 ```
 
-### `/remind` or `/requirements-remind`
-Reminds AI to follow requirements gathering rules.
+### `/requirements-focus`
+Universal focus correction and task reminder.
+
+**In requirements mode:** Reminds AI to gather specs, not implement
+**Outside requirements:** General focus and task reminder
 
 **Use when AI:**
 - Asks open-ended questions
-- Starts implementing code
+- Starts implementing code  
+- Gets distracted from current task
 - Asks multiple questions at once
 
-## 🎯 Features
+### `/requirements-implement [spec-id]`
+Begin implementation based on completed specification.
+
+**No argument - Active Spec:**
+```
+/requirements-implement
+🚀 IMPLEMENTATION MODE: user-authentication
+📖 Project context loaded from CLAUDE.md
+📋 Implementation plan: 4 phases, 12 tasks
+🤖 Coordination: Using frontend + backend subagents
+```
+
+**With spec-id - Specific Spec:**
+```
+/requirements-implement dark-mode
+🚀 IMPLEMENTATION MODE: dark-mode-toggle  
+📋 Scope: Simple single-agent implementation
+⚠️ No CLAUDE.md found - using generic patterns
+```
+
+## 🎯 Key Features
+
+### Complete Spec-to-Code Pipeline
+- **Requirements Gathering**: Systematic specification creation
+- **Smart Implementation**: Context-aware code generation
+- **Subagent Coordination**: Specialized agents for complex work
+- **Quality Assurance**: Testing against acceptance criteria
 
 ### Smart Defaults
 Every question includes an intelligent default based on:
