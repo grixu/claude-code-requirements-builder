@@ -30,11 +30,17 @@ Finalize the current requirement gathering session.
 4. Based on choice:
 
 ### Option 1: Generate Spec
-- Create 06-requirements-spec.md *(SPECIFICATION document, not implementation)*
-- Include all answered questions
-- Add defaults for unanswered with "ASSUMED:" prefix
-- Generate implementation hints *(as guidance for future developer)*
-- Update metadata status to "complete"
+- Check if .latest-spec exists in requirement folder:
+  - If exists, warn: "This requirement has been edited. Generating spec may overwrite changes."
+  - Ask: "Continue with original spec generation? (This creates v1, preserving edited versions)"
+  - If user confirms, proceed with 06-requirements-spec.md
+  - If user cancels, suggest using /requirements-edit to modify latest version
+- If no .latest-spec file:
+  - Create 06-requirements-spec.md *(SPECIFICATION document, not implementation)*
+  - Include all answered questions
+  - Add defaults for unanswered with "ASSUMED:" prefix
+  - Generate implementation hints *(as guidance for future developer)*
+  - Update metadata status to "complete"
 
 **⚠️ CRITICAL REMINDER**: You are creating a SPECIFICATION DOCUMENT, not implementation code.
 Even though you have analyzed technical details, your output is documentation that describes what to build, not the actual build.
@@ -92,5 +98,14 @@ Status: [Complete with X assumptions / Partial]
 - Implementation files ready to use
 - The actual solution to the problem
 
-5. Clear .current-requirement
-6. Update requirements/index.md
+5. Create .latest-spec file (if generating new spec):
+   ```json
+   {
+     "version": 1,
+     "filename": "06-requirements-spec.md",
+     "updated": "[ISO-8601-timestamp]",
+     "edit_count": 0
+   }
+   ```
+6. Clear .current-requirement
+7. Update requirements/index.md

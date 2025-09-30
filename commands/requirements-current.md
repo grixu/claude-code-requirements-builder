@@ -54,6 +54,7 @@ Your task is to understand WHAT needs to be built, not to BUILD it.
 ```
 📋 Active Requirement: [name]
 Started: [time ago]
+📝 Version: v[X] ([Y] edits) - [if edited, show last edit date]
 Phase: [Discovery/Detail]
 Progress: [X/Y] questions answered
 
@@ -131,11 +132,18 @@ You are in VIEW-ONLY MODE for requirements inspection.
 ```
 📋 Requirement: [name]
 ⏱️  Duration: [time since start]
+📝 Version: v[X] ([Y] edits) | Last Modified: [date if edited]
 📊 Phase: [Initial Setup/Context Discovery/Targeted Context/Expert Requirements/Complete]
 🎯 Progress: [total answered]/[total questions]
 
 📄 Initial Request:
 [Show content from 00-initial-request.md]
+
+🔄 Edit History (if versions > 1):
+- v1: Original specification
+- v2: [edit 1 summary] - [date]
+- v3: [edit 2 summary] - [date]
+[Show latest edit details if multiple versions exist]
 
 🏗️ Codebase Overview (Phase 1):
 - Architecture: [e.g., React + Node.js + PostgreSQL]
@@ -163,6 +171,7 @@ Q3: Add new API endpoint to routes/api/v1? [PENDING]
 
 📝 Actions:
 - Continue: /requirements-current (no arguments)
+- Edit specification: /requirements-edit [requirement-id]
 - End: /requirements-end
 ```
 
@@ -199,29 +208,32 @@ Display all requirements with their status and summaries.
 📚 Requirements Documentation
 
 🔴 ACTIVE: profile-picture-upload
-   Phase: Discovery (3/5) | Started: 30m ago
+   Version: v1 (0 edits) | Phase: Discovery (3/5) | Started: 30m ago
    Next: Q4 about file restrictions
 
 ✅ COMPLETE:
 2025-01-26-0900-dark-mode-toggle
-   Status: Ready for implementation | 15 questions answered
-   Summary: Full theme system with user preferences
+   Version: v3 (2 edits) | Status: Ready for implementation | 15 questions answered
+   Summary: Full theme system with user preferences (last edit: added custom themes)
+   Latest spec: 16-requirements-spec-v3.md
    Linked PR: #234 (merged)
 
-2025-01-25-1400-export-reports  
-   Status: Implemented | 22 questions answered
+2025-01-25-1400-export-reports
+   Version: v1 (0 edits) | Status: Implemented | 22 questions answered
    Summary: PDF/CSV export with filtering
-   
+
 ⚠️ INCOMPLETE:
 2025-01-24-1100-notification-system
-   Status: Paused at Detail phase (2/8) | Last: 2 days ago
-   Summary: Email/push notifications for events
-   
+   Version: v2 (1 edit) | Status: Paused at Detail phase (2/8) | Last: 2 days ago
+   Summary: Email/push notifications for events (last edit: added Slack integration)
+   Latest spec: 11-requirements-spec-v2.md
+
 📈 Statistics:
 - Total: 4 requirements
 - Complete: 2 (13 avg questions)
 - Active: 1
 - Incomplete: 1
+- Total edits across all requirements: 3
 ```
 
 #### Additional Features:
@@ -237,6 +249,7 @@ Display all requirements with their status and summaries.
 3. Quick actions:
    - "View specific: /requirements-current [id]"
    - "Resume active: /requirements-current"
+   - "Edit specification: /requirements-edit [id]"
    - "Start new: /requirements-start [description]"
 
 ## Important Notes:

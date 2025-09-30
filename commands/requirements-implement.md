@@ -32,13 +32,30 @@ Think step-by-step about this implementation process. You'll coordinate the enti
 
 First, determine which specification to implement. If no arguments are provided ($ARGUMENTS is empty), read the requirements/.current-requirement file to find the active requirement. If this file doesn't exist or is empty, inform the user "No active requirement found. Please specify a spec-id to implement." Then use the requirements-current command with --all flag to show available specifications, and suggest they use: /requirements-implement [spec-id]
 
-If $ARGUMENTS is not empty, search the requirements/ folder for a specification matching $ARGUMENTS. Look for folders containing the $ARGUMENTS text in their names, then load the 06-requirements-spec.md file from that folder.
+If $ARGUMENTS is not empty, search the requirements/ folder for a specification matching $ARGUMENTS. Look for folders containing the $ARGUMENTS text in their names, then find the latest specification version:
+
+**Find Latest Specification Version:**
+1. **Check for .latest-spec file first** in the requirement folder
+   - If exists, read the JSON to get the current version filename
+   - Load the specification file specified in the "filename" field
+   - Display version info: "📋 Loading v[X] (latest)"
+
+2. **Fallback to file scanning** if .latest-spec doesn't exist:
+   - Search for files matching pattern: `*requirements-spec*.md`
+   - Find highest numbered version: 06-requirements-spec.md, 11-requirements-spec-v2.md, 16-requirements-spec-v3.md, etc.
+   - Load the highest numbered specification file
+   - Display: "📋 Loading v[X] (auto-detected latest)"
+
+3. **Error handling**:
+   - If no specification files found, inform user: "No specification found in [folder]. Use /requirements-start to create one."
+   - If multiple potential matches, list them and ask user to be more specific
 
 Once you've loaded a specification, display this summary to confirm what you're implementing:
 
 <implementation_target>
 📋 **IMPLEMENTING**: [Specification Name from the loaded spec]
-📅 **Generated**: [date from spec metadata]
+📅 **Generated**: [original date from spec metadata]
+📝 **Version**: v[X] ([Y] edits) - [Last modified date if edited]
 🎯 **Status**: [Complete/Partial based on spec completeness]
 📊 **Scope**: [Brief 1-2 sentence overview from the spec's overview section]
 </implementation_target>
