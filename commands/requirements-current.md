@@ -182,7 +182,10 @@ Q3: Add new API endpoint to routes/api/v1? [PENDING]
 - 03-context-findings.md - AI's codebase analysis
 - 04-detail-questions.md - Expert requirements questions
 - 05-detail-answers.md - User's detailed answers
-- 06-requirements-spec.md - Final requirements document
+- 07-verification-questions.md - Testing strategy questions
+- 08-verification-answers.md - User's verification preferences
+- 09-verification-plan.md - Comprehensive testing strategy
+- 10-requirements-spec.md - Final requirements document
 
 **Remember**: This displays requirements gathering progress, NOT implementation progress. All progress shown relates to building a SPECIFICATION document, not building software.
 

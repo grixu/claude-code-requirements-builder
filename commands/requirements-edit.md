@@ -45,7 +45,7 @@ Update an existing requirements specification document while maintaining version
    - Check for .latest-spec file first
    - If exists, load the version specified
    - If not exists, find highest numbered *requirements-spec*.md file
-   - Pattern: 06-requirements-spec.md, 11-requirements-spec-v2.md, 16-requirements-spec-v3.md, etc.
+   - Pattern: 10-requirements-spec.md, 15-requirements-spec-v2.md, 20-requirements-spec-v3.md, etc.
 5. Load metadata.json to understand current state and edit history
 6. Display current requirement status:
 
@@ -254,7 +254,7 @@ Edit History:
 
 ## File Naming Pattern:
 ```
-Original: 06-requirements-spec.md
+Original: 10-requirements-spec.md
 Edit 1:   07-edit-1-request.md → 11-requirements-spec-v2.md
 Edit 2:   12-edit-2-request.md → 16-requirements-spec-v3.md
 Edit 3:   17-edit-3-request.md → 21-requirements-spec-v4.md

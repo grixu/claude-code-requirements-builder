@@ -33,10 +33,10 @@ Finalize the current requirement gathering session.
 - Check if .latest-spec exists in requirement folder:
   - If exists, warn: "This requirement has been edited. Generating spec may overwrite changes."
   - Ask: "Continue with original spec generation? (This creates v1, preserving edited versions)"
-  - If user confirms, proceed with 06-requirements-spec.md
+  - If user confirms, proceed with 10-requirements-spec.md
   - If user cancels, suggest using /requirements-edit to modify latest version
 - If no .latest-spec file:
-  - Create 06-requirements-spec.md *(SPECIFICATION document, not implementation)*
+  - Create 10-requirements-spec.md *(SPECIFICATION document, not implementation)*
   - Include all answered questions
   - Add defaults for unanswered with "ASSUMED:" prefix
   - Generate implementation hints *(as guidance for future developer)*
@@ -78,6 +78,14 @@ Status: [Complete with X assumptions / Partial]
 - New components: [if any] *(to be created by implementer)*
 - Database changes: [if any] *(to be implemented by implementer)*
 
+### Verification Requirements
+[Testing strategy and verification plan from verification phase]
+- Testing approach: [UI/API/Unit/Manual/Mixed based on verification answers]
+- Prerequisites: [Test accounts, sample data, credentials required]
+- Automated tests: [Browser automation, API testing, unit tests]
+- Manual verification: [Steps requiring human validation]
+- Success criteria: [How to confirm implementation works correctly]
+
 ### Assumptions
 [List any defaults used for unanswered questions]
 
@@ -102,10 +110,42 @@ Status: [Complete with X assumptions / Partial]
    ```json
    {
      "version": 1,
-     "filename": "06-requirements-spec.md",
+     "filename": "10-requirements-spec.md",
      "updated": "[ISO-8601-timestamp]",
      "edit_count": 0
    }
    ```
-6. Clear .current-requirement
-7. Update requirements/index.md
+
+6. Create .verification-plan file (if verification phase was completed):
+   ```json
+   {
+     "testingStrategy": "[ui|api|unit|manual|mixed]",
+     "tools": ["[playwright|curl|jest|manual]"],
+     "prerequisites": {
+       "credentials": ["[required test accounts]"],
+       "testData": ["[sample data needed]"],
+       "environment": ["[staging URLs, test databases]"]
+     },
+     "automatedTests": [
+       {
+         "type": "[ui|api|unit]",
+         "description": "[test description]",
+         "steps": ["[test steps]"]
+       }
+     ],
+     "manualTests": [
+       {
+         "description": "[manual verification description]",
+         "steps": ["[manual steps]"]
+       }
+     ],
+     "acceptanceCriteria": {
+       "functional": ["[functional requirements to verify]"],
+       "visual": ["[visual requirements if applicable]"],
+       "performance": ["[performance criteria if applicable]"]
+     }
+   }
+   ```
+
+7. Clear .current-requirement
+8. Update requirements/index.md

@@ -113,20 +113,50 @@ Begin gathering requirements for: $ARGUMENTS
 
 **🎯 PURPOSE**: These technical questions help you write a better SPECIFICATION document with precise technical requirements.
 
-### Phase 5: Requirements Documentation
-**📋 PHASE 5 FINAL REMINDER**: You are creating a SPECIFICATION DOCUMENT, not implementation code!
+### Phase 5: Verification Planning
+**📋 PHASE 5 REMINDER**: You are planning HOW TO VERIFY the implementation, NOT implementing or testing!
 
-9. Generate comprehensive requirements spec in 06-requirements-spec.md:
+8. After expert questions answered, plan verification strategy:
+   - Generate 3-5 key yes/no questions about verification approach to 07-verification-questions.md
+   - Questions should determine testing methods, tools, and requirements
+   - Focus on HOW to validate the implementation will work correctly
+   - Include smart defaults based on feature type and codebase patterns
+   - Ask questions one at a time
+   - Only after all questions are asked, record answers in 08-verification-answers.md
+   - Create 09-verification-plan.md with comprehensive testing strategy
+
+**💡 VERIFICATION QUESTION EXAMPLES**:
+- ✅ "Should we test the user interface using browser automation?" *(to document testing approach)*
+- ✅ "Will verification require specific test accounts or credentials?" *(to specify test prerequisites)*
+- ✅ "Should visual design be compared with mockups or design files?" *(to define visual testing requirements)*
+- ✅ "Do API endpoints need automated testing with sample data?" *(to specify API testing approach)*
+- ✅ "Will manual testing be needed for complex user workflows?" *(to identify manual testing requirements)*
+
+**🎯 PURPOSE**: These verification questions help you create a TESTING PLAN that another session can use to validate the implementation.
+
+**⚠️ CRITICAL**: You are specifying HOW to test the future implementation. You are NOT:
+- Running tests on existing code
+- Creating test files or test code
+- Implementing testing tools or frameworks
+- Actually validating any current functionality
+
+**✅ YOU ARE**: Creating a verification plan that specifies how to test the implemented solution.
+
+### Phase 6: Requirements Documentation
+**📋 PHASE 6 FINAL REMINDER**: You are creating a SPECIFICATION DOCUMENT, not implementation code!
+
+10. Generate comprehensive requirements spec in 10-requirements-spec.md:
    - Problem statement and solution overview
    - Functional requirements based on all answers
    - Technical requirements with specific file paths *(for future implementation)*
    - Implementation hints and patterns to follow *(as guidance for implementer)*
+   - Verification requirements and testing strategy *(from verification plan)*
    - Acceptance criteria *(to verify the future implementation)*
    - Assumptions for any unanswered questions
 
 **🎯 YOUR FINAL OUTPUT IS**:
 - A requirements document in Markdown format
-- Located in requirements/[timestamp-folder]/06-requirements-spec.md
+- Located in requirements/[timestamp-folder]/10-requirements-spec.md
 - Ready for ANOTHER developer/session to implement
 - NOT executable code or working components
 
@@ -167,6 +197,24 @@ Begin gathering requirements for: $ARGUMENTS
 **Default if unknown:** No (based on similar features not requiring schema changes)
 ```
 
+### Verification Questions (Phase 5):
+```
+## Q9: Should we test the user interface using browser automation?
+**Default if unknown:** Yes (ensures UI functionality works correctly)
+
+## Q10: Will verification require specific test accounts or sample data?
+**Default if unknown:** Yes (most features need realistic test scenarios)
+
+## Q11: Should visual design be compared with design files or mockups?
+**Default if unknown:** No (unless design compliance is specifically required)
+
+## Q12: Do API endpoints need automated testing with various inputs?
+**Default if unknown:** Yes (validates backend functionality and error handling)
+
+## Q13: Will manual testing be needed for complex user workflows?
+**Default if unknown:** Yes (ensures end-to-end user experience works correctly)
+```
+
 ## Important Rules:
 - ONLY yes/no questions with smart defaults
 - ONE question at a time
@@ -193,10 +241,11 @@ Before formulating ANY response, ask yourself:
   "started": "ISO-8601-timestamp",
   "lastUpdated": "ISO-8601-timestamp",
   "status": "active",
-  "phase": "discovery|context|detail|complete",
+  "phase": "discovery|context|detail|verification|complete",
   "progress": {
     "discovery": { "answered": 0, "total": 5 },
-    "detail": { "answered": 0, "total": 0 }
+    "detail": { "answered": 0, "total": 0 },
+    "verification": { "answered": 0, "total": 0 }
   },
   "contextFiles": ["paths/of/files/analyzed"],
   "relatedFeatures": ["similar features found"]

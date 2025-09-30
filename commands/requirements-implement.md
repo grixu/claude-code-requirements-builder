@@ -42,7 +42,7 @@ If $ARGUMENTS is not empty, search the requirements/ folder for a specification 
 
 2. **Fallback to file scanning** if .latest-spec doesn't exist:
    - Search for files matching pattern: `*requirements-spec*.md`
-   - Find highest numbered version: 06-requirements-spec.md, 11-requirements-spec-v2.md, 16-requirements-spec-v3.md, etc.
+   - Find highest numbered version: 10-requirements-spec.md, 15-requirements-spec-v2.md, 20-requirements-spec-v3.md, etc.
    - Load the highest numbered specification file
    - Display: "📋 Loading v[X] (auto-detected latest)"
 
